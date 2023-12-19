@@ -1,4 +1,4 @@
-# grandeur
+# Grandeur
 
 A new Flutter project.
 

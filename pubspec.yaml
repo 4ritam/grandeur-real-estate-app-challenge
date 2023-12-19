@@ -4,33 +4,15 @@ description: "A new Flutter project."
 
 publish_to: 'none' 
 
-
-
-
-
-
-
-
-
-
-
-
-
 version: 1.0.0+1
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
 
 
-
-
-
-
-
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.2
   fpdart: ^1.1.0
   intl: ^0.19.0
@@ -38,15 +20,49 @@ dependencies:
   cached_network_image: ^3.3.0
   hooks_riverpod: ^2.4.9
   appwrite: ^11.0.1
+  flutter_svg: ^0.22.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.11.0
 
+
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/config/AppIcon.png"
+  adaptive_icon_background: "assets/config/Background.png"
+  adaptive_icon_foreground: "assets/config/Logo.png"
 
 flutter:
-
   uses-material-design: true
+
+  assets:
+    - assets/svgs/
+    - assets/images/
+    
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/config/fonts/Poppins-ExtraLight.ttf
+          weight: 100
+        - asset: assets/config/fonts/Poppins-Light.ttf
+          weight: 200
+        - asset: assets/config/fonts/Poppins-Thin.ttf
+          weight: 300
+        - asset: assets/config/fonts/Poppins-Medium.ttf
+          weight: 400
+        - asset: assets/config/fonts/Poppins-Regular.ttf
+          weight: 500
+        - asset: assets/config/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/config/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/config/fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/config/fonts/Poppins-Black.ttf
+          weight: 900
