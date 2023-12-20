@@ -71,7 +71,7 @@ class GetStartedPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
+                      padding: const EdgeInsets.only(top: 16, bottom: 24),
                       child: Text(
                         "Let your heart be your 🧭 We'll map the way 🏡",
                         style: TextStyle(
@@ -83,7 +83,7 @@ class GetStartedPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 24),
+                      padding: const EdgeInsets.only(bottom: 48),
                       child: SizedBox(
                         width: double.infinity,
                         child: Text(
@@ -94,7 +94,7 @@ class GetStartedPage extends StatelessWidget {
                                 .onBackground
                                 .withOpacity(0.7),
                             fontSize: 20,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w600,
                           ),
                           textAlign: TextAlign.start,
                         ),

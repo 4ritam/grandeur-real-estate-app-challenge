@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:grandeur/config/routes/routes.dart';
 import 'package:grandeur/core/utils/logo_svg.dart';
 import 'package:grandeur/core/widgets/boxed_text_field.dart';
 import 'package:grandeur/core/widgets/primary_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../core/widgets/back_button.dart';
 
-class ForgotPasswordPage extends HookConsumerWidget {
-  const ForgotPasswordPage({super.key});
+class ResetPasswordPage extends HookConsumerWidget {
+  const ResetPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +41,7 @@ class ForgotPasswordPage extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Don\'t forget it again!',
+                  'Remember to make it 💪',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onBackground,
                     fontWeight: FontWeight.w800,
@@ -50,8 +50,15 @@ class ForgotPasswordPage extends HookConsumerWidget {
                 ),
                 const SizedBox(height: 48.0),
                 BoxedTextField(
-                  hintText: 'Email',
-                  controller: emailController,
+                  hintText: 'Password',
+                  controller: passwordController,
+                  obscureText: true,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 16.0),
+                BoxedTextField(
+                  hintText: 'Confirm Password',
+                  controller: confirmPasswordController,
                   obscureText: false,
                   keyboardType: TextInputType.emailAddress,
                 ),
@@ -60,10 +67,10 @@ class ForgotPasswordPage extends HookConsumerWidget {
                   width: double.infinity,
                   child: PrimaryButton(
                     onPressed: () {
-                      context.replace(Routes.resetPassword);
+                      context.pop();
                     },
                     child: Text(
-                      'Verify Email',
+                      'Submit',
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.onPrimary,
                           fontWeight: FontWeight.w700,
@@ -72,25 +79,6 @@ class ForgotPasswordPage extends HookConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 24.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Text(
-                          'Can\'t access your account?',
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14.0),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),

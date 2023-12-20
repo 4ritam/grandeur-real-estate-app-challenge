@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:grandeur/config/routes/routes.dart';
 import 'package:grandeur/core/utils/informative_bottom_sheet.dart';
 import 'package:grandeur/core/utils/logo_svg.dart';
 import 'package:grandeur/core/widgets/boxed_text_field.dart';
@@ -42,6 +44,7 @@ class LoginPage extends HookConsumerWidget {
       ),
       body: Center(
         child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
@@ -52,7 +55,7 @@ class LoginPage extends HookConsumerWidget {
                   'Unleash the 💪 within this 🧭',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onBackground,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w800,
                     fontSize: 32.0,
                   ),
                 ),
@@ -61,12 +64,14 @@ class LoginPage extends HookConsumerWidget {
                   hintText: 'Email',
                   controller: emailController,
                   obscureText: false,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 16.0),
                 BoxedTextField(
                   hintText: 'Password',
                   controller: passwordController,
                   obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
                 ),
                 const SizedBox(height: 24.0),
                 SizedBox(
@@ -90,7 +95,9 @@ class LoginPage extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.pushNamed( Routes.forgotPassword);
+                        },
                         child: Text(
                           'Forgot Password?',
                           style: TextStyle(
@@ -100,7 +107,9 @@ class LoginPage extends HookConsumerWidget {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.replaceNamed(Routes.signup);
+                        },
                         child: Text(
                           'Create New Account',
                           style: TextStyle(
