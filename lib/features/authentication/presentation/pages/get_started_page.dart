@@ -1,13 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:grandeur/core/constants/assets_constants.dart';
 import 'package:grandeur/core/extras/cookies_use.dart';
 import 'package:grandeur/core/extras/privacy_policy.dart';
 import 'package:grandeur/core/extras/terms.dart';
 import 'package:grandeur/core/utils/informative_bottom_sheet.dart';
+import 'package:grandeur/core/utils/logo_svg.dart';
 import 'package:grandeur/core/widgets/primary_button.dart';
 import 'package:grandeur/core/widgets/secondary_button.dart';
+
+import '../../../../config/routes/routes.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -36,13 +40,6 @@ class GetStartedPage extends StatelessWidget {
             floating: false,
             backgroundColor: Theme.of(context).colorScheme.background,
             toolbarHeight: MediaQuery.of(context).size.height * 0.125,
-            leading: SvgPicture.asset(
-              SVGConstants.logo,
-              color: Theme.of(context).colorScheme.onBackground,
-              colorBlendMode: BlendMode.srcIn,
-              semanticsLabel: "Grandeur Logo",
-            ),
-            leadingWidth: MediaQuery.of(context).size.width * 0.25,
             collapsedHeight: MediaQuery.of(context).size.height * 0.125,
             expandedHeight: MediaQuery.of(context).size.height * 0.5,
             flexibleSpace: FlexibleSpaceBar(
@@ -50,13 +47,16 @@ class GetStartedPage extends StatelessWidget {
                 ImageConstants.buildingBackground,
                 filterQuality: FilterQuality.low,
                 color:
-                    Theme.of(context).colorScheme.background.withOpacity(0.45),
+                    Theme.of(context).colorScheme.background.withOpacity(0.65),
                 colorBlendMode: MediaQuery.of(context).platformBrightness ==
                         Brightness.light
                     ? BlendMode.softLight
                     : BlendMode.multiply,
                 fit: BoxFit.cover,
               ),
+              title: const LogoSvg(),
+              centerTitle: true,
+              titlePadding: const EdgeInsets.only(bottom: 0),
             ),
           ),
           SliverToBoxAdapter(
@@ -87,7 +87,7 @@ class GetStartedPage extends StatelessWidget {
                       child: SizedBox(
                         width: double.infinity,
                         child: Text(
-                          "Join Us Today!",
+                          "Come Onboard Today!",
                           style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
@@ -104,7 +104,9 @@ class GetStartedPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: PrimaryButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.pushNamed(Routes.login);
+                            },
                             child: Text(
                               'Log In',
                               style: TextStyle(
@@ -119,7 +121,9 @@ class GetStartedPage extends StatelessWidget {
                         ),
                         Expanded(
                           child: SecondaryButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.pushNamed(Routes.signup);
+                            },
                             child: Text(
                               'Sign Up',
                               style: TextStyle(

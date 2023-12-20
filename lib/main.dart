@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'config/routes/routes.dart';
+import 'config/routes/app_router.dart';
 import 'config/themes/themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  
-  runApp(const MyApp());
+  final AppRouter appRouter = AppRouter();
+  runApp(
+    ProviderScope(
+      child: MyApp(
+        appRouter: appRouter,
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({
+    super.key,
+    required this.appRouter,
+  });
 
   @override
   Widget build(BuildContext context) {
-    bool done = true;
-
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Grandeur',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      initialRoute: '/',
-      routes: done ? Routes.authRoutes : Routes.defaultRoutes,
+      routerConfig: appRouter.defaultRouter,
     );
   }
 }

@@ -30,7 +30,7 @@ class InformativeBottomSheet extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 32),
+            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 32),
             child: SizedBox(
               width: double.infinity,
               child: Text(
