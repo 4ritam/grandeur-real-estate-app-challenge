@@ -2,6 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grandeur/core/constants/assets_constants.dart';
+import 'package:grandeur/core/extras/cookies_use.dart';
+import 'package:grandeur/core/extras/privacy_policy.dart';
+import 'package:grandeur/core/extras/terms.dart';
+import 'package:grandeur/core/utils/informative_bottom_sheet.dart';
 import 'package:grandeur/core/widgets/primary_button.dart';
 import 'package:grandeur/core/widgets/secondary_button.dart';
 
@@ -279,7 +283,13 @@ class GetStartedPage extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                               text: "Terms",
-                              recognizer: TapGestureRecognizer()..onTap = () {},
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  showInformativeBottomSheet(
+                                      context: context,
+                                      title: "Terms",
+                                      information: [generateTerms()]);
+                                },
                             ),
                             const TextSpan(
                               text: ", ",
@@ -291,7 +301,13 @@ class GetStartedPage extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                               text: "Privacy Policy",
-                              recognizer: TapGestureRecognizer()..onTap = () {},
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  showInformativeBottomSheet(
+                                      context: context,
+                                      title: "Privacy Policy",
+                                      information: [generatePrivacyPolicy()]);
+                                },
                             ),
                             const TextSpan(
                               text: " and ",
@@ -302,8 +318,14 @@ class GetStartedPage extends StatelessWidget {
                                     Theme.of(context).colorScheme.onBackground,
                                 fontWeight: FontWeight.w600,
                               ),
-                              text: "Cookie Use",
-                              recognizer: TapGestureRecognizer()..onTap = () {},
+                              text: "Cookies Use",
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  showInformativeBottomSheet(
+                                      context: context,
+                                      title: "Cookies Usage",
+                                      information: [generateCookiesUsage()]);
+                                },
                             ),
                             const TextSpan(
                               text: ". ",
