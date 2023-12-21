@@ -8,7 +8,7 @@ class BackCircularButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircularActionButton(
-      child: const Icon(Icons.arrow_back),
+      child: const Icon(Icons.arrow_back_ios),
       onPressed: () {
         context.pop();
       },

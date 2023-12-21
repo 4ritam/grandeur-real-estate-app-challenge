@@ -229,7 +229,7 @@ class GetStartedPage extends StatelessWidget {
                       height: 16,
                     ),
                     SecondaryButton(
-                      onPressed: () {},
+                      onPressed: () {  },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

@@ -19,12 +19,6 @@ class LoginPage extends HookConsumerWidget {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
 
-    void handleLogin() {
-      String email = emailController.text;
-      String password = passwordController.text;
-      print('Email: $email, Password: $password');
-    }
-
     return Scaffold(
       appBar: AppBar(
         leading: const FittedBox(
@@ -77,7 +71,10 @@ class LoginPage extends HookConsumerWidget {
                 SizedBox(
                   width: double.infinity,
                   child: PrimaryButton(
-                    onPressed: handleLogin,
+                    onPressed: () {
+                      context.pop();
+                      context.replaceNamed(Routes.home);
+                    },
                     child: Text(
                       'Login',
                       style: TextStyle(
@@ -96,7 +93,7 @@ class LoginPage extends HookConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.pushNamed( Routes.forgotPassword);
+                          context.pushNamed(Routes.forgotPassword);
                         },
                         child: Text(
                           'Forgot Password?',
