@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             title: SearchField(controller: searchController),
             actions: [
               CircularActionButton(
-                child: const Icon(Icons.filter_list),
+                child: const Icon(Icons.filter_list, size: 32),
                 onPressed: () {
                   context.pushNamed(Routes.filterPage);
                 },

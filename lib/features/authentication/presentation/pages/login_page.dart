@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:grandeur/config/routes/routes.dart';
 import 'package:grandeur/core/utils/informative_bottom_sheet.dart';
@@ -10,24 +11,27 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../core/extras/extras.dart';
 import '../../../../core/widgets/back_button.dart';
+import '../controllers/auth_controller.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();
+
+    void handleLogin() async {
+      await ref.read(authControllerProvider.notifier).login(
+            emailController.text,
+            passwordController.text,
+            context,
+          );
+    }
 
     return Scaffold(
       appBar: AppBar(
-        leading: const FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child: BackCircularButton(),
-          ),
-        ),
+        leading: const BackCircularButton(),
         title: const FittedBox(
           fit: BoxFit.fitWidth,
           child: SizedBox(width: 150, height: 150, child: LogoSvg()),
@@ -68,21 +72,34 @@ class LoginPage extends HookConsumerWidget {
                   keyboardType: TextInputType.visiblePassword,
                 ),
                 const SizedBox(height: 24.0),
-                SizedBox(
-                  width: double.infinity,
-                  child: PrimaryButton(
-                    onPressed: () {
-                      context.pop();
-                      context.replaceNamed(Routes.home);
-                    },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16.0),
-                    ),
-                  ),
+                Consumer(
+                  builder: (context, ref, child) => ref
+                          .watch(authControllerProvider)
+                      ? SizedBox(
+                          width: double.infinity,
+                          child: PrimaryButton(
+                            isLoading: true,
+                            onPressed: handleLogin,
+                            child: CircularProgressIndicator(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: PrimaryButton(
+                            isLoading: false,
+                            onPressed: handleLogin,
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16.0),
+                            ),
+                          ),
+                        ),
                 ),
                 const SizedBox(height: 24.0),
                 Padding(

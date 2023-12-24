@@ -12,9 +12,10 @@ class InboxPage extends StatelessWidget {
             floating: true,
             expandedHeight: MediaQuery.of(context).size.height * 0.15,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text(
+              title: Text(
                 'Inbox',
                 style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 24.0,
                   fontWeight: FontWeight.w700,
                 ),

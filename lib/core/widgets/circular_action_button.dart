@@ -16,7 +16,7 @@ class CircularActionButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         backgroundColor: Theme.of(context).colorScheme.background,
         foregroundColor: Theme.of(context).colorScheme.onBackground,
         side: BorderSide(color: Theme.of(context).colorScheme.onBackground),

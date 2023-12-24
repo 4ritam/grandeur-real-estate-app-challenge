@@ -7,43 +7,43 @@ import 'package:grandeur/core/utils/logo_svg.dart';
 import 'package:grandeur/core/widgets/boxed_text_field.dart';
 import 'package:grandeur/core/widgets/primary_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../core/extras/extras.dart';
 import '../../../../core/widgets/back_button.dart';
+import '../controllers/auth_controller.dart';
 
 class SignUpPage extends HookConsumerWidget {
   const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final nameController = TextEditingController();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final confirmPasswordController = TextEditingController();
+    final nameController = useTextEditingController();
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();
+    final confirmPasswordController = useTextEditingController();
 
-    void handleLogin() {
-      String email = emailController.text;
-      String password = passwordController.text;
-      print('Email: $email, Password: $password');
+    void handleSignUp() async {
+      await ref.read(authControllerProvider.notifier).signup(
+            emailController.text,
+            passwordController.text,
+            nameController.text,
+            confirmPasswordController.text,
+            context,
+          );
     }
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        leading: const FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child: BackCircularButton(),
-          ),
-        ),
+        leading: const BackCircularButton(),
         title: const FittedBox(
           fit: BoxFit.fitWidth,
           child: SizedBox(width: 150, height: 150, child: LogoSvg()),
         ),
         centerTitle: true,
         toolbarHeight: MediaQuery.of(context).size.height * 0.125,
-        leadingWidth: MediaQuery.of(context).size.width * 0.20,
+        leadingWidth: MediaQuery.of(context).size.width * 0.2,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -54,7 +54,7 @@ class SignUpPage extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Come aboard 🚢 and set sail 🪝',
+                'Come aboard 🚢 and set sail ⚓',
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.w800,
@@ -89,18 +89,33 @@ class SignUpPage extends HookConsumerWidget {
                 keyboardType: TextInputType.visiblePassword,
               ),
               const SizedBox(height: 24.0),
-              SizedBox(
-                width: double.infinity,
-                child: PrimaryButton(
-                  onPressed: handleLogin,
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16.0),
-                  ),
-                ),
+              Consumer(
+                builder: (context, ref, child) => ref
+                        .watch(authControllerProvider)
+                    ? SizedBox(
+                        width: double.infinity,
+                        child: PrimaryButton(
+                          isLoading: true,
+                          onPressed: handleSignUp,
+                          child: CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        width: double.infinity,
+                        child: PrimaryButton(
+                          isLoading: false,
+                          onPressed: handleSignUp,
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16.0),
+                          ),
+                        ),
+                      ),
               ),
               const SizedBox(height: 24.0),
               Padding(
@@ -110,7 +125,11 @@ class SignUpPage extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        ref
+                            .watch(authControllerProvider.notifier)
+                            .logout(context);
+                      },
                       child: Text(
                         'Reset',
                         style: TextStyle(

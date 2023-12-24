@@ -7,11 +7,20 @@ class BackCircularButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircularActionButton(
-      child: const Icon(Icons.arrow_back_ios),
-      onPressed: () {
-        context.pop();
-      },
+    return FittedBox(
+      fit: BoxFit.fitWidth,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: CircularActionButton(
+          child: const Padding(
+            padding: EdgeInsets.only(left: 12.0),
+            child: Icon(Icons.arrow_back_ios, size: 32),
+          ),
+          onPressed: () {
+            context.pop();
+          },
+        ),
+      ),
     );
   }
 }

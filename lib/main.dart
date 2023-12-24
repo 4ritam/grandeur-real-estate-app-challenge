@@ -4,36 +4,36 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'config/routes/app_router.dart';
 import 'config/themes/themes.dart';
+import 'dependency_injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  final AppRouter appRouter = AppRouter();
+  final dependency = DependencyInjection();
+  await dependency.initialize();
   runApp(
     ProviderScope(
-      child: MyApp(
-        appRouter: appRouter,
-      ),
+      overrides: dependency.overrideDepenedencies(),
+      child: const MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  final AppRouter appRouter;
+class MyApp extends ConsumerWidget {
   const MyApp({
     super.key,
-    required this.appRouter,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appRouter = ref.watch(goRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Grandeur',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      routerConfig: appRouter.defaultRouter,
+      routerConfig: appRouter,
     );
   }
 }

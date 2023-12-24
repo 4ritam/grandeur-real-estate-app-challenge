@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:grandeur/core/widgets/primary_button.dart';
+import 'package:grandeur/features/authentication/presentation/controllers/auth_controller.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: CustomScrollView(
@@ -12,9 +15,10 @@ class ProfilePage extends StatelessWidget {
             floating: true,
             expandedHeight: MediaQuery.of(context).size.height * 0.15,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text(
+              title: Text(
                 'Profile',
                 style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 24.0,
                   fontWeight: FontWeight.w700,
                 ),
@@ -23,9 +27,23 @@ class ProfilePage extends StatelessWidget {
                   left: MediaQuery.of(context).size.width * 0.05),
             ),
           ),
-          const SliverFillRemaining(
+          SliverFillRemaining(
             child: Center(
-              child: Text('Profile Page'),
+              child: Column(
+                children: [
+                  const Text('Profile Page'),
+                  PrimaryButton(
+                    onPressed: () {
+                      ref.read(authControllerProvider.notifier).logout(context);
+                    },
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],

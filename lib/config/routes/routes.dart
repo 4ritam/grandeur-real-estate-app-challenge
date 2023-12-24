@@ -1,10 +1,10 @@
 class Routes {
-  static const String getStarted = '/';
+  static const String getStarted = '/get-started';
   static const String login = '/login';
   static const String signup = '/signup';
   static const String forgotPassword = '/forgot-password';
   static const String resetPassword = '/reset-password';
-  static const String home = '/home';
+  static const String home = '/';
   static const String filterPage = '/filter-page';
   static const String productDetail = '/product-detail';
   static const String inboxPage = '/inbox-page';

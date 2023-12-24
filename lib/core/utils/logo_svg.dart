@@ -10,6 +10,7 @@ class LogoSvg extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       SVGConstants.logo,
+      // ignore: deprecated_member_use
       color: Theme.of(context).colorScheme.onBackground,
       semanticsLabel: "Grandeur Logo",
       alignment: Alignment.bottomCenter,
