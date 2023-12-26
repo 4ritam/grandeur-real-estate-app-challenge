@@ -7,6 +7,7 @@ import 'config/themes/themes.dart';
 import 'dependency_injection.dart';
 
 void main() async {
+  // debugRepaintRainbowEnabled = true;
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final dependency = DependencyInjection();

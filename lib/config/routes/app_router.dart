@@ -8,10 +8,12 @@ import 'package:grandeur/features/authentication/presentation/pages/login_page.d
 import 'package:grandeur/features/authentication/presentation/pages/reset_password.dart';
 import 'package:grandeur/features/authentication/presentation/pages/signup_page.dart';
 import 'package:grandeur/features/listings/presentation/pages/filter_page.dart';
+import 'package:grandeur/features/listings/presentation/pages/post_page.dart';
 import 'package:grandeur/features/tab_view/presentation/pages/view_template.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/providers/authentication.dart';
+import '../../features/listings/domain/model/post.dart';
 
 final goRouterProvider = Provider<GoRouter>(
   (ref) {
@@ -36,20 +38,21 @@ final goRouterProvider = Provider<GoRouter>(
           ),
           routes: [
             GoRoute(
-                name: Routes.login,
-                path: 'login',
-                pageBuilder: (context, state) => const MaterialPage(
-                      child: LoginPage(),
-                    ),
-                routes: [
-                  GoRoute(
-                    name: Routes.forgotPassword,
-                    path: 'forgot-password',
-                    pageBuilder: (context, state) => const MaterialPage(
-                      child: ForgotPasswordPage(),
-                    ),
+              name: Routes.login,
+              path: 'login',
+              pageBuilder: (context, state) => const MaterialPage(
+                child: LoginPage(),
+              ),
+              routes: [
+                GoRoute(
+                  name: Routes.forgotPassword,
+                  path: 'forgot-password',
+                  pageBuilder: (context, state) => const MaterialPage(
+                    child: ForgotPasswordPage(),
                   ),
-                ]),
+                ),
+              ],
+            ),
             GoRoute(
               name: Routes.signup,
               path: 'signup',
@@ -85,13 +88,14 @@ final goRouterProvider = Provider<GoRouter>(
             GoRoute(
               name: Routes.productDetail,
               path: 'product-detail/:id',
-              pageBuilder: (context, state) => const MaterialPage(
-                child: Scaffold(
-                  body: Center(
-                    child: Text('Product Detail'),
+              pageBuilder: (context, state) {
+                return MaterialPage(
+                  child: PostPage(
+                    id: state.pathParameters['id']!,
+                    post: state.extra as Post,
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),

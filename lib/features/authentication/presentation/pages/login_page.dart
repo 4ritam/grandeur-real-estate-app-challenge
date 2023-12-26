@@ -65,11 +65,13 @@ class LoginPage extends HookConsumerWidget {
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 16.0),
-                BoxedTextField(
-                  hintText: 'Password',
-                  controller: passwordController,
-                  obscureText: true,
-                  keyboardType: TextInputType.visiblePassword,
+                RepaintBoundary(
+                  child: BoxedTextField(
+                    hintText: 'Password',
+                    controller: passwordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                  ),
                 ),
                 const SizedBox(height: 24.0),
                 Consumer(

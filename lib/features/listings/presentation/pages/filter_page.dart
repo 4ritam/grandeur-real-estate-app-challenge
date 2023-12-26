@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:grandeur/core/widgets/back_button.dart';
 import 'package:grandeur/core/widgets/circular_action_button.dart';
-import 'package:grandeur/features/listings/domain/model/house_type.dart';
+import 'package:grandeur/features/listings/domain/model/house.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FilterPage extends HookConsumerWidget {

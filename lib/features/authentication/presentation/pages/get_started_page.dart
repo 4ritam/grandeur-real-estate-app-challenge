@@ -60,285 +60,294 @@ class GetStartedPage extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(32),
-                topRight: Radius.circular(32),
-              ),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16, bottom: 24),
-                      child: Text(
-                        "Let your heart be your 🧭 We'll map the way 🏡",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          fontSize: 26,
-                          fontWeight: FontWeight.w800,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 48),
-                      child: SizedBox(
-                        width: double.infinity,
+            child: RepaintBoundary(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, bottom: 24),
                         child: Text(
-                          "Come Onboard Today!",
+                          "Let your heart be your 🧭 We'll map the way 🏡",
                           style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onBackground
-                                .withOpacity(0.7),
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
                           ),
                           textAlign: TextAlign.start,
                         ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: PrimaryButton(
-                            onPressed: () {
-                              context.pushNamed(Routes.login);
-                            },
-                            child: Text(
-                              'Log In',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontWeight: FontWeight.w700,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 48),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Text(
+                            "Come Onboard Today!",
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withOpacity(0.7),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: PrimaryButton(
+                              onPressed: () {
+                                context.pushNamed(Routes.login);
+                              },
+                              child: Text(
+                                'Log In',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          Expanded(
+                            child: SecondaryButton(
+                              onPressed: () {
+                                context.pushNamed(Routes.signup);
+                              },
+                              child: Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Divider(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.3),
+                                thickness: 2,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'OR',
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.6),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Divider(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.3),
+                                thickness: 2,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: SecondaryButton(
-                            onPressed: () {
-                              context.pushNamed(Routes.signup);
-                            },
-                            child: Text(
-                              'Sign Up',
+                      ),
+                      SecondaryButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              SVGConstants.googleLogo,
+                              semanticsLabel: "Google Logo",
+                              height: 26,
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              'Continue with Google',
                               style: TextStyle(
                                 color:
                                     Theme.of(context).colorScheme.onSecondary,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Divider(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onBackground
-                                  .withOpacity(0.3),
-                              thickness: 2,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'OR',
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.6),
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Divider(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onBackground
-                                  .withOpacity(0.3),
-                              thickness: 2,
-                            ),
-                          ),
-                        ],
                       ),
-                    ),
-                    SecondaryButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            SVGConstants.googleLogo,
-                            semanticsLabel: "Google Logo",
-                            height: 26,
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Text(
-                            'Continue with Google',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 16,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    SecondaryButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            SVGConstants.facebookLogo,
-                            semanticsLabel: "Facebook Logo",
-                            height: 26,
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Text(
-                            'Continue with Facebook',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    SecondaryButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            SVGConstants.twitterLogo,
-                            semanticsLabel: "X Logo",
-                            height: 26,
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Text(
-                            'Continue with X',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    Divider(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onBackground
-                          .withOpacity(0.3),
-                      thickness: 2,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 16, bottom: 64, left: 8, right: 8),
-                      child: RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondary
-                                .withOpacity(0.7),
-                          ),
+                      SecondaryButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const TextSpan(
-                              text: "By signing up, you agree to our ",
+                            SvgPicture.asset(
+                              SVGConstants.facebookLogo,
+                              semanticsLabel: "Facebook Logo",
+                              height: 26,
                             ),
-                            TextSpan(
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              'Continue with Facebook',
                               style: TextStyle(
                                 color:
-                                    Theme.of(context).colorScheme.onBackground,
-                                fontWeight: FontWeight.w600,
+                                    Theme.of(context).colorScheme.onSecondary,
+                                fontWeight: FontWeight.w700,
                               ),
-                              text: "Terms",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  showInformativeBottomSheet(
-                                      context: context,
-                                      title: "Terms",
-                                      information: [generateTerms()]);
-                                },
-                            ),
-                            const TextSpan(
-                              text: ", ",
-                            ),
-                            TextSpan(
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              text: "Privacy Policy",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  showInformativeBottomSheet(
-                                      context: context,
-                                      title: "Privacy Policy",
-                                      information: [generatePrivacyPolicy()]);
-                                },
-                            ),
-                            const TextSpan(
-                              text: " and ",
-                            ),
-                            TextSpan(
-                              style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              text: "Cookies Use",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  showInformativeBottomSheet(
-                                      context: context,
-                                      title: "Cookies Usage",
-                                      information: [generateCookiesUsage()]);
-                                },
-                            ),
-                            const TextSpan(
-                              text: ". ",
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      SecondaryButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              SVGConstants.twitterLogo,
+                              semanticsLabel: "X Logo",
+                              height: 26,
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              'Continue with X',
+                              style: TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 32,
+                      ),
+                      Divider(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground
+                            .withOpacity(0.3),
+                        thickness: 2,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 16, bottom: 64, left: 8, right: 8),
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondary
+                                  .withOpacity(0.7),
+                            ),
+                            children: [
+                              const TextSpan(
+                                text: "By signing up, you agree to our ",
+                              ),
+                              TextSpan(
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                text: "Terms",
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    showInformativeBottomSheet(
+                                        context: context,
+                                        title: "Terms",
+                                        information: [generateTerms()]);
+                                  },
+                              ),
+                              const TextSpan(
+                                text: ", ",
+                              ),
+                              TextSpan(
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                text: "Privacy Policy",
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    showInformativeBottomSheet(
+                                        context: context,
+                                        title: "Privacy Policy",
+                                        information: [generatePrivacyPolicy()]);
+                                  },
+                              ),
+                              const TextSpan(
+                                text: " and ",
+                              ),
+                              TextSpan(
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                text: "Cookies Use",
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    showInformativeBottomSheet(
+                                        context: context,
+                                        title: "Cookies Usage",
+                                        information: [generateCookiesUsage()]);
+                                  },
+                              ),
+                              const TextSpan(
+                                text: ". ",
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
